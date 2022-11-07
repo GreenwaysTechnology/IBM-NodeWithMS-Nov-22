@@ -1,24 +1,27 @@
-//function literals with arrow and higher order function
-let login = (userName, password, success, failure) => {
-    let status = ''
-    if (userName === 'admin' && password === 'admin') {
-        //call success
-        status = 'Login success'
-        success(status)
-    } else {
-        //call failure
-        status = 'Login Failed'
-        failure(status)
-    }
+//when we pass object as parameter to function 
+
+//without destructuring
+// function display(person) {
+//     console.log(`id ${person.id}`)
+//     console.log(`name ${person.name}`)
+//     console.log(`city ${person.address.city}`)
+// }
+
+// function display(person) {
+//     const { id, name, address: { city } } = person
+//     console.log(`id ${id}`)
+//     console.log(`name ${name}`)
+//     console.log(`city ${city}`)
+// }
+// const display = (person) => {
+//     const { id, name, address: { city } } = person
+//     console.log(`id ${id}`)
+//     console.log(`name ${name}`)
+//     console.log(`city ${city}`)
+// }
+const display = ({ id, name, address: { city } }) => {
+    console.log(`id ${id}`)
+    console.log(`name ${name}`)
+    console.log(`city ${city}`)
 }
-//simple arrow
-login('admin', 'admin', (status) => {
-    console.log(status)
-}, (status) => {
-    console.log(status)
-})
-//code refactoring
-login('admin', 'admin', status => console.log(status), err => console.log(err))
-login('foo', 'bar', status => console.log(status), err => console.log(err))
-
-
+display({ id: 1, name: 'subramanian', address: { city: 'coimbatore' } })

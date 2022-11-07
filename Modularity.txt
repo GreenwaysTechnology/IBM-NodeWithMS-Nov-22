@@ -1,0 +1,144 @@
+				Modualrity
+.....................................................................................
+
+How to share code? How to import code?
+
+ Code:
+  Could be variables,functions,classes.
+  Variables can have any literal string,numbers,boolean,objects,functions...
+
+src
+  |
+  subfolders
+|
+index.js
+
+Sharing code :
+
+Keywords
+exports
+module.exports
+
+Imporing code:
+require('fileName')
+require('folderName/fileName')
+
+exports:
+ Used to share more code from the single file.
+ exports packs the entire code into one single js object and returns that object
+
+src/mylib.js
+
+//variables can have any values
+//exports to share code with other files 
+exports.firstName = 'Subramanian'
+exports.lastName = 'Murugan'
+exports.age = 18
+exports.status = true
+exports.getCity = () => 'Coimbatore'
+exports.skills = ['Js', 'React', 'java']
+exports.location = {
+    lat: 1000,
+    lng: 897
+}
+
+src/index.js
+//person is just variable
+//person value is object which exported from mylib.js file 
+
+const person = require('./mylib') // function which returns object(code)
+console.log(person)
+
+console.log(person.firstName)
+console.log(person.getCity())
+
+
+node src/index.js
+{
+  firstName: 'Subramanian',
+  lastName: 'Murugan',
+  age: 18,
+  status: true,
+  getCity: [Function (anonymous)],
+  skills: [ 'Js', 'React', 'java' ],
+  location: { lat: 1000, lng: 897 }
+}
+Subramanian
+Coimbatore
+
+require:
+  It is a function which returns what ever we have exported from the file.
+const obj= require('fileName')
+.....................................................................................
+
+...................................................................................
+				module.exports
+....................................................................................
+
+Export only one item from the file.
+
+eg"
+ if you want to share  "Class"
+ if you want to share "array"
+
+How to share class?
+src/index.js
+
+const UserService = require('./services/user.service')
+console.log(UserService)
+let userService = new UserService()
+console.log(userService.findAll())
+console.log(userService.save())
+
+//with destrcturing
+let { findAll, save, remove } = new UserService()
+console.log(findAll())
+console.log(save())
+console.log(remove())
+
+src/services/user.service.js
+
+class UserService {
+    constructor() {
+
+    }
+    findAll() {
+        return 'Users'
+    }
+    save() {
+        return 'User saved'
+    }
+    remove() {
+        return 'User Removed'
+    }
+}
+//
+module.exports = UserService // we share class , later you can create object 
+..................................................................................
+		How to share object and how the files links other files
+
+src/index.js
+
+const { findAll } = require('./services/todo.service')
+console.log(findAll())
+
+
+src/services/todo.service.js
+const TODOS = require("../mock-data/todos")
+
+class TodoService {
+    constructor() { }
+    findAll() {
+        return TODOS
+    }
+}
+module.exports = new TodoService() // share object directly
+
+mock-data: please refer code repo.
+....................................................................................
+
+
+
+
+
+

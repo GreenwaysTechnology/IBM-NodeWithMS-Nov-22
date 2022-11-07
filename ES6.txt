@@ -656,17 +656,289 @@ login('admin', 'admin', (status) => {
 //code refactoring
 login('admin', 'admin', status => console.log(status), status => console.log(status))
 login('foo', 'bar', status => console.log(status), status => console.log(status))
+..................................................................................
+			 How to return function from another function
+...................................................................................
+
+inner function:
+
+//how to return function from another function 
+
+function counter() {
+    console.log('counter')
+    //inner function 
+    function inc() {
+        console.log('inc')
+    }
+    inc()
+}
+counter()
+// inc()
 
 
+...
+inner functions with literal notation and arrow
+//how to return function from another function 
+
+// function counter() {
+//     console.log('counter')
+//     //inner function 
+//     let inc = function () {
+//         console.log('inc')
+//     }
+//     inc()
+// }
+
+const counter = () => {
+    console.log('counter')
+    //inner function 
+    let inc = () => {
+        console.log('inc')
+    }
+    inc()
+}
+counter()
+// inc()
+...................................
+How to return function from another  : Higher Order function
+//how to return function from another function 
+
+// function counter() {
+//     console.log('counter')
+//     //inner function 
+//     let inc = function () {
+//         console.log('inc')
+//     }
+//     return inc 
+// }
+// function counter() {
+//     console.log('counter')
+//     //inner function 
+//     return function () {
+//         console.log('inc')
+//     }
+
+// }
+
+// const counter = () => {
+//     console.log('counter')
+//     //inner function 
+//     return () => console.log('inc')
+
+// }
+
+const counter = () => () => console.log('inc')
 
 
+// const res = counter()
+// console.log(res)
+// res()
+//short cut 
+counter()()
+.....................................................................................					Objects and Javascript
+
+Javascript is not object oriented programming language rather Object based programming language.
+
+JS does not support many object oriented features.
+
+In js every thing mostly objects including functions.
+
+How to create objects?
+
+Using constructor pattern
+ =es 5 style
+    functions
+ =es 6 style
+    class
+
+in order to create object, functions can be used  , function act as object template
+
+Object contains properties
+
+properties could be variables(instance variables),methods
+
+object properties are identified by "this" keyword
+
+objects are created by calling constructor function with new keyword
 
 
+Using literal pattern
 
 
+eg:
+//constructors
+
+function Person() {
+    //properties 
+    this.id = 1
+    this.name = 'Subramanin'
+    //methods
+    this.calculateAge = function () {
+        return 18
+    }
+}
+//create object 
+//person is reference variable
+//new is keyword
+//Person() is constructor call 
+let person = new Person();
+console.log(person.id,person.name,person.calculateAge())
+
+constructor parameters:
+//constructors
+function Person(id = 1, name = '') {
+    //properties 
+    this.id = id
+    this.name = name
+    //methods
+    this.calculateAge = function () {
+        return 18
+    }
+}
+//create object 
+//person is reference variable
+//new is keyword
+//Person() is constructor call 
+let person = new Person(1, 'subramaian');
+console.log(person.id, person.name, person.calculateAge())
+...................................................................................
+ES 6 Classes:
+............
+//es 6 classes
+class Person {
+    city = 'Coimbatore'
+    constructor(id = 1, name = '') {
+        //properties 
+        this.id = id
+        this.name = name
+    }
+    //methods
+    calculateAge() {
+        return 18
+    }
+}
+//create object 
+//person is reference variable
+//new is keyword
+//Person() is constructor call 
+let person = new Person(1, 'subramaian');
+//person.city='Coimbatore'
+console.log(person.id, person.name, person.calculateAge(),person.city)
+
+....................................................................................
+Using literal pattern
+
+No class,no function, but we can create objects.
+It is more expressive pattern
+
+//literal objects 
+
+let person = {
+    //properties
+    id: 1, // key:value (value can be any literal)
+    name: 'Subramanian',
+    city: 'Coimbatore'
+}
+console.log(`id ${person.id} name ${person.name} ${person.city}`)
+person.name = 'Subramanian Murugan'
+console.log(`id ${person.id} name ${person.name} ${person.city}`)
+//how to introduce methods
+
+let product = {
+    id: 1,
+    name: 'Phone',
+    // calculatePrice: function () {
+    //     return 100
+    // },
+    //arrow syntax
+    // calculatePrice: () => {
+    //     return 100
+    // }
+    //es 6 class method syntax
+    calculatePrice() {
+        return 100
+    },
+    calculateQty() {
+        return 10
+    }
 
 
+}
+console.log(`Product details`)
+console.log(product.id, product.name, product.calculatePrice(), product.calculateQty())
+....................................................................................
+			Nested Objects -has a
+................................................................................
+//literal objects with nesting - has a 
 
+let person = {
+    id: 1,
+    name: 'Subramanian',
+    address: {
+        street: '3 rd street',
+        city: 'Coimbatore',
+        state: 'Tamil Nadu'
+    }
+}
+console.log(person.id, person.name, person.address.street, person.address.city)
+console.log(person.address)
+
+// classes has-a 
+
+class OrderService {
+    constructor() {
+
+    }
+    findAll() {
+        return 'Orders'
+    }
+}
+class OrderController {
+    constructor(orderService) {
+        this.orderService = orderService
+    }
+    init() {
+        console.log(this.orderService.findAll())
+    }
+}
+let orderCtrl = new OrderController(new OrderService())
+orderCtrl.init()
+.....................................................................................
+				Object Destructuring
+.....................................................................................
+
+How to extract object properties?
+
+Functions and object as parameter.
+
+//when we pass object as parameter to function 
+
+//without destructuring
+// function display(person) {
+//     console.log(`id ${person.id}`)
+//     console.log(`name ${person.name}`)
+//     console.log(`city ${person.address.city}`)
+// }
+
+// function display(person) {
+//     const { id, name, address: { city } } = person
+//     console.log(`id ${id}`)
+//     console.log(`name ${name}`)
+//     console.log(`city ${city}`)
+// }
+// const display = (person) => {
+//     const { id, name, address: { city } } = person
+//     console.log(`id ${id}`)
+//     console.log(`name ${name}`)
+//     console.log(`city ${city}`)
+// }
+const display = ({ id, name, address: { city } }) => {
+    console.log(`id ${id}`)
+    console.log(`name ${name}`)
+    console.log(`city ${city}`)
+}
+display({ id: 1, name: 'subramanian', address: { city: 'coimbatore' } })
+....................................................................................
 
 
 
