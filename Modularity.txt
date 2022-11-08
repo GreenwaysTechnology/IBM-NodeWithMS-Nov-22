@@ -1,6 +1,47 @@
 				Modualrity
 .....................................................................................
 
+In java Modularity , is presented via "Packages"
+
+Package organize the code  logically.
+
+Customer.java
+
+package com.ibm.cms
+
+public class Customer{}
+
+Java organizes code folders and files Physically.
+
+d:/javaapps/src/
+    com/ibm/cms/Customer.java
+
+What about javascript Modularity?
+
+ Javascript is file based modularity physically
+ but logically there is no such modularity at language level.
+
+collection of variable declarations and function.
+
+Once js started growing in large scale, dev struck to organize code.
+
+2000, Smart developers started thinking about how to modualrize js code.
+ 
+
+Module design patterns came.
+
+1.Namespace design pattern : 2000 : jquery
+2.AMD -Async Module Defintion : dojo
+---------------------------------------------------------
+3.CJS - Common JS =  namespace + amd:2005 on wards
+4.ES 6 Module design pattern:2012-2015  = amd + cjs
+------------------------------------------------------------
+5.System :2007 = AMD = CJS + ES 6
+6.UMD :2008 = NAMESPACE + AMD + CJS = ES 6
+....................................................................................
+				Commonjs-CJS
+.....................................................................................
+
 How to share code? How to import code?
 
  Code:
@@ -136,8 +177,79 @@ module.exports = new TodoService() // share object directly
 
 mock-data: please refer code repo.
 ....................................................................................
+			   ES 6 module pattern
+.....................................................................................
 
+How to share code and how to import code?
 
+export,export default == exports and module.exports
+
+import === require()
+
+src/util.js
+
+export const name = 'Subramanian Murugan'
+export const age = 18
+export const status = true
+export const skills = ['js', 'react', 'node', 'java']
+export const address = {
+    city: 'Coimbatore'
+}
+export const getValue = () => 100
+
+src/index.js
+import { name, age, address, status, getValue } from './util.js'
+
+console.log(name)
+console.log(age)
+console.log(address)
+console.log(status)
+console.log(getValue())
+
+...........
+
+src/services/product.service.js
+
+//syntax -1
+// export default class ProductService {
+
+// }
+
+class ProductService {
+    constructor() {
+
+    }
+    findAll() {
+        return 'Products'
+    }
+}
+
+export default ProductService;
+
+src/index.js
+import ProductService from './services/product.service.js'
+
+let productService = new ProductService()
+console.log(productService.findAll())
+
+in order to run es 6 modules we need to do the following configuration.
+
+>npm init --yes
+
+package.json
+{
+  "name": "moduleapps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
 
 
 

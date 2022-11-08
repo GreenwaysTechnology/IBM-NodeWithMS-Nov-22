@@ -527,6 +527,7 @@ let getValue = value => value
 console.log(getValue(10))
 .....................................................................................
                   functional programming principles and implementations
+
 Higher order functions are function which are passed as parameter to other functions
 and also we can return function from other functions.
 
@@ -634,7 +635,9 @@ login('foo', 'bar', function (status) {
 ...................
 
 Higher order functions with anonmous function syntax:
+
 //function literals with arrow and higher order function
+
 let login = (userName, password, success, failure) => {
     let status = ''
     if (userName === 'admin' && password === 'admin') {

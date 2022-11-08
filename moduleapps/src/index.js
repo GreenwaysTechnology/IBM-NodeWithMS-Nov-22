@@ -1,2 +1,4 @@
-const { findAll } = require('./services/todo.service')
-console.log(findAll())
+import ProductService from './services/product.service.js'
+
+let productService = new ProductService()
+console.log(productService.findAll())
