@@ -183,6 +183,57 @@ Node provides two types of threads
 			C10K Problem solved succfully in node.js
 
    Having single event loop thread handles concurrent more no network requests
+Event Loop:
+
+Any similar arch/technology available today like node.js?
+
+Java - with Netty
+Java with Vertx
+Java with Quarkus
+
+What type apps we can build using Node.js?
+
+You can build  concurrent non blocking network io apps...
+
+....................................................................................
+
+Node.js platform has been built on 
+
+Google v8 : javascript engine  to execute js program
+libuv :  It is operating system non blocking abstractions
+
+Node.js is multi threaded? or single threaded?
+
+No!
+
+Node is mult threaded.
+
+Node provides two types of threads
+
+1.Event loop thread 
+   Node has only one event loop thread
+ Event loop thread only handles non blocking IO - Socket IO(NETWORK IO)
+
+2.Worker pool threads
+  Node has dedcited more no of threads called "worker pool threads"
+  
+ Use case:
+   To run non blocking "file io"
+   To Run blocking code and blocking io operations.
+...................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
