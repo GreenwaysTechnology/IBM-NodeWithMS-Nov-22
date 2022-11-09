@@ -1,0 +1,21 @@
+{
+  "name": "mynpmapps",
+  "version": "1.0.0",
+  "description": "This is demo package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node src/index.js",
+    "build" : "node src/index.js"
+  },
+  "keywords": [
+    "my",
+    "demo",
+    "package"
+  ],
+  "author": "Subramanian Murugan",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
