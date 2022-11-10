@@ -1,12 +1,12 @@
 const { ServiceBroker } = require('moleculer')
 
-// const broker = new ServiceBroker({
-//     transporter:"TCP"
-// })
-
 const broker = new ServiceBroker({
-    transporter:"nats://localhost:4222"
+    transporter:"TCP"
 })
+
+// const broker = new ServiceBroker({
+//     transporter:"nats://localhost:4222"
+// })
 
 broker.createService({
     name: 'math',
@@ -27,14 +27,14 @@ broker.createService({
         },
         multiply: {
             //param validation logic
-            params: {
-                a: "number",
-                b: "number"
-            },
+            // params: {
+            //     a: "number",
+            //     b: "number"
+            // },
             //biz logic 
             handler(ctx) {
-                const a = ctx.params.a
-                const b = ctx.params.b
+                const a = parseInt(ctx.params.a)
+                const b = parseInt(ctx.params.b)
                 //service to service communication via context object 
                 return ctx.call('multiplier.multiply', { a: a, b: b })
             }
@@ -60,6 +60,8 @@ broker.createService({
         }
     }
 })
+
+
 
 
 async function main() {

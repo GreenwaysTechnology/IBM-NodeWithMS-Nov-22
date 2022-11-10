@@ -4,29 +4,19 @@ const broker = new ServiceBroker({
     transporter: "TCP"
 })
 
-// const broker = new ServiceBroker({
-//     transporter:"nats://localhost:4222"
-// })
-
 broker.createService({
-    name: 'multiplier',
+    name: 'cart',
     actions: {
-        multiply: {
-            //param validation logic
-            params: {
-                a: "number",
-                b: "number"
-            },
+        checkout: {
             //biz logic 
             handler(ctx) {
-                const a = ctx.params.a
-                const b = ctx.params.b
-                return `${a * b} from ${ctx.nodeID}`
+                const { id, name, qty } = ctx.params
+                //service to service communication via context object 
+                ctx.emit('order.created', { id: id, name: name, qty: qty })
             }
         }
     }
 })
-
 
 
 async function main() {
