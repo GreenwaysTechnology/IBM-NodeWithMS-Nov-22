@@ -13,8 +13,11 @@
     "moleculer": "^0.14.26",
     "moleculer-db": "^0.8.20",
     "moleculer-db-adapter-mongo": "^0.4.15",
+    "moleculer-db-adapter-sequelize": "^0.2.15",
     "moleculer-repl": "^0.7.3",
-    "moleculer-web": "^0.10.4"
+    "moleculer-web": "^0.10.4",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4"
   },
   "devDependencies": {
     "fakerator": "^0.3.6"

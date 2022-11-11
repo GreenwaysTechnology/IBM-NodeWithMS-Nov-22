@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ioredis": "^5.2.4",
     "moleculer": "^0.14.26",
+    "moleculer-web": "^0.10.4",
     "nats": "^2.9.0"
   },
   "devDependencies": {
